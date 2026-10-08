@@ -1,0 +1,320 @@
+{
+  "schema_version": "1.0",
+  "book": {
+    "title": "集合与函数概念 · 教学演示",
+    "edition": "原创微型夹具；非人教A版教材原文或完整章节",
+    "publisher": "原创测试材料（面向人教A版使用流程）",
+    "pdf_name": "sample.pdf",
+    "sha256": "1d3c84a67ec4067b0cf0a8247e5030b5335c11bb7555e4e551ebce6339f64670",
+    "page_count": 2,
+    "printed_page_offset": 0
+  },
+  "pages": [
+    {
+      "pdf_page": 1,
+      "printed_page": "1",
+      "text": "第一章 集合与函数概念\n1.1 集合\n集合可以描述研究对象。\n集合并集示例：$A \\cup B$\n1.2 函数\n函数描述变量之间的对应关系。\n一次函数示例：$f(x)=2x+1$\n",
+      "review": "pending",
+      "reviewer": "",
+      "note": "",
+      "extraction": "text-layer"
+    },
+    {
+      "pdf_page": 2,
+      "printed_page": "2",
+      "text": "第二章 二次函数\n2.1 二次函数的图象\n二次函数示例：$f(x)=x^2$\n本文件为原创简化测试夹具，不是教材原文。\n",
+      "review": "pending",
+      "reviewer": "",
+      "note": "",
+      "extraction": "text-layer"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "book",
+      "title": "集合与函数概念 · 教学演示",
+      "kind": "book",
+      "origin": "metadata",
+      "sources": [],
+      "formula_ids": [],
+      "review": "pending"
+    },
+    {
+      "id": "n1",
+      "title": "第一章 集合与函数概念",
+      "kind": "heading",
+      "origin": "textbook",
+      "sources": [
+        {
+          "pdf_page": 1,
+          "line": 1,
+          "quote": "第一章 集合与函数概念"
+        }
+      ],
+      "formula_ids": [],
+      "review": "pending"
+    },
+    {
+      "id": "n2",
+      "title": "1.1 集合",
+      "kind": "heading",
+      "origin": "textbook",
+      "sources": [
+        {
+          "pdf_page": 1,
+          "line": 2,
+          "quote": "1.1 集合"
+        }
+      ],
+      "formula_ids": [],
+      "review": "pending"
+    },
+    {
+      "id": "n3",
+      "title": "集合可以描述研究对象。",
+      "kind": "excerpt",
+      "origin": "textbook",
+      "sources": [
+        {
+          "pdf_page": 1,
+          "line": 3,
+          "quote": "集合可以描述研究对象。"
+        }
+      ],
+      "formula_ids": [],
+      "review": "pending"
+    },
+    {
+      "id": "n4",
+      "title": "集合并集示例：$A \\cup B$",
+      "kind": "excerpt",
+      "origin": "textbook",
+      "sources": [
+        {
+          "pdf_page": 1,
+          "line": 4,
+          "quote": "集合并集示例：$A \\cup B$"
+        }
+      ],
+      "formula_ids": [
+        "f1"
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "n5",
+      "title": "1.2 函数",
+      "kind": "heading",
+      "origin": "textbook",
+      "sources": [
+        {
+          "pdf_page": 1,
+          "line": 5,
+          "quote": "1.2 函数"
+        }
+      ],
+      "formula_ids": [],
+      "review": "pending"
+    },
+    {
+      "id": "n6",
+      "title": "函数描述变量之间的对应关系。",
+      "kind": "excerpt",
+      "origin": "textbook",
+      "sources": [
+        {
+          "pdf_page": 1,
+          "line": 6,
+          "quote": "函数描述变量之间的对应关系。"
+        }
+      ],
+      "formula_ids": [],
+      "review": "pending"
+    },
+    {
+      "id": "n7",
+      "title": "一次函数示例：$f(x)=2x+1$",
+      "kind": "excerpt",
+      "origin": "textbook",
+      "sources": [
+        {
+          "pdf_page": 1,
+          "line": 7,
+          "quote": "一次函数示例：$f(x)=2x+1$"
+        }
+      ],
+      "formula_ids": [
+        "f2"
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "n8",
+      "title": "第二章 二次函数",
+      "kind": "heading",
+      "origin": "textbook",
+      "sources": [
+        {
+          "pdf_page": 2,
+          "line": 1,
+          "quote": "第二章 二次函数"
+        }
+      ],
+      "formula_ids": [],
+      "review": "pending"
+    },
+    {
+      "id": "n9",
+      "title": "2.1 二次函数的图象",
+      "kind": "heading",
+      "origin": "textbook",
+      "sources": [
+        {
+          "pdf_page": 2,
+          "line": 2,
+          "quote": "2.1 二次函数的图象"
+        }
+      ],
+      "formula_ids": [],
+      "review": "pending"
+    },
+    {
+      "id": "n10",
+      "title": "二次函数示例：$f(x)=x^2$",
+      "kind": "excerpt",
+      "origin": "textbook",
+      "sources": [
+        {
+          "pdf_page": 2,
+          "line": 3,
+          "quote": "二次函数示例：$f(x)=x^2$"
+        }
+      ],
+      "formula_ids": [
+        "f3"
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "n11",
+      "title": "本文件为原创简化测试夹具，不是教材原文。",
+      "kind": "excerpt",
+      "origin": "textbook",
+      "sources": [
+        {
+          "pdf_page": 2,
+          "line": 4,
+          "quote": "本文件为原创简化测试夹具，不是教材原文。"
+        }
+      ],
+      "formula_ids": [],
+      "review": "pending"
+    }
+  ],
+  "formulas": [
+    {
+      "id": "f1",
+      "raw": "A \\cup B",
+      "latex": "A \\cup B",
+      "source": {
+        "pdf_page": 1,
+        "line": 4,
+        "quote": "集合并集示例：$A \\cup B$"
+      },
+      "review": "pending",
+      "reviewer": "",
+      "note": ""
+    },
+    {
+      "id": "f2",
+      "raw": "f(x)=2x+1",
+      "latex": "f(x)=2x+1",
+      "source": {
+        "pdf_page": 1,
+        "line": 7,
+        "quote": "一次函数示例：$f(x)=2x+1$"
+      },
+      "review": "pending",
+      "reviewer": "",
+      "note": ""
+    },
+    {
+      "id": "f3",
+      "raw": "f(x)=x^2",
+      "latex": "f(x)=x^2",
+      "source": {
+        "pdf_page": 2,
+        "line": 3,
+        "quote": "二次函数示例：$f(x)=x^2$"
+      },
+      "review": "pending",
+      "reviewer": "",
+      "note": ""
+    }
+  ],
+  "textbook": {
+    "node_id": "book",
+    "children": [
+      {
+        "node_id": "n1",
+        "children": [
+          {
+            "node_id": "n2",
+            "children": [
+              {
+                "node_id": "n3",
+                "children": []
+              },
+              {
+                "node_id": "n4",
+                "children": []
+              }
+            ]
+          },
+          {
+            "node_id": "n5",
+            "children": [
+              {
+                "node_id": "n6",
+                "children": []
+              },
+              {
+                "node_id": "n7",
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "node_id": "n8",
+        "children": [
+          {
+            "node_id": "n9",
+            "children": [
+              {
+                "node_id": "n10",
+                "children": []
+              },
+              {
+                "node_id": "n11",
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "exam": {
+    "node_id": "book",
+    "children": []
+  },
+  "relations": [],
+  "structure_review": {
+    "textbook": "pending",
+    "exam": "pending",
+    "reviewer": "",
+    "note": ""
+  }
+}

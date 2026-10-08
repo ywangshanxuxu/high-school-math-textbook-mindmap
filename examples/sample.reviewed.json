@@ -1,0 +1,371 @@
+{
+  "schema_version": "1.0",
+  "book": {
+    "title": "集合与函数概念 · 教学演示",
+    "edition": "原创微型夹具；非人教A版教材原文或完整章节",
+    "publisher": "原创测试材料（面向人教A版使用流程）",
+    "pdf_name": "sample.pdf",
+    "sha256": "1d3c84a67ec4067b0cf0a8247e5030b5335c11bb7555e4e551ebce6339f64670",
+    "page_count": 2,
+    "printed_page_offset": 0
+  },
+  "pages": [
+    {
+      "pdf_page": 1,
+      "printed_page": "1",
+      "text": "第一章 集合与函数概念\n1.1 集合\n集合可以描述研究对象。\n集合并集示例：$A \\cup B$\n1.2 函数\n函数描述变量之间的对应关系。\n一次函数示例：$f(x)=2x+1$\n",
+      "review": "approved",
+      "reviewer": "原创夹具编写者",
+      "note": "与 make_sample.py 中原文核对；非真实教材审核",
+      "extraction": "text-layer"
+    },
+    {
+      "pdf_page": 2,
+      "printed_page": "2",
+      "text": "第二章 二次函数\n2.1 二次函数的图象\n二次函数示例：$f(x)=x^2$\n本文件为原创简化测试夹具，不是教材原文。\n",
+      "review": "approved",
+      "reviewer": "原创夹具编写者",
+      "note": "与 make_sample.py 中原文核对；非真实教材审核",
+      "extraction": "text-layer"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "book",
+      "title": "集合与函数概念 · 教学演示",
+      "kind": "book",
+      "origin": "metadata",
+      "sources": [],
+      "formula_ids": [],
+      "review": "approved"
+    },
+    {
+      "id": "n1",
+      "title": "第一章 集合与函数概念",
+      "kind": "heading",
+      "origin": "textbook",
+      "sources": [
+        {
+          "pdf_page": 1,
+          "line": 1,
+          "quote": "第一章 集合与函数概念"
+        }
+      ],
+      "formula_ids": [],
+      "review": "approved"
+    },
+    {
+      "id": "n2",
+      "title": "1.1 集合",
+      "kind": "heading",
+      "origin": "textbook",
+      "sources": [
+        {
+          "pdf_page": 1,
+          "line": 2,
+          "quote": "1.1 集合"
+        }
+      ],
+      "formula_ids": [],
+      "review": "approved"
+    },
+    {
+      "id": "n3",
+      "title": "集合可以描述研究对象。",
+      "kind": "excerpt",
+      "origin": "textbook",
+      "sources": [
+        {
+          "pdf_page": 1,
+          "line": 3,
+          "quote": "集合可以描述研究对象。"
+        }
+      ],
+      "formula_ids": [],
+      "review": "approved"
+    },
+    {
+      "id": "n4",
+      "title": "集合并集示例：$A \\cup B$",
+      "kind": "excerpt",
+      "origin": "textbook",
+      "sources": [
+        {
+          "pdf_page": 1,
+          "line": 4,
+          "quote": "集合并集示例：$A \\cup B$"
+        }
+      ],
+      "formula_ids": [
+        "f1"
+      ],
+      "review": "approved"
+    },
+    {
+      "id": "n5",
+      "title": "1.2 函数",
+      "kind": "heading",
+      "origin": "textbook",
+      "sources": [
+        {
+          "pdf_page": 1,
+          "line": 5,
+          "quote": "1.2 函数"
+        }
+      ],
+      "formula_ids": [],
+      "review": "approved"
+    },
+    {
+      "id": "n6",
+      "title": "函数描述变量之间的对应关系。",
+      "kind": "excerpt",
+      "origin": "textbook",
+      "sources": [
+        {
+          "pdf_page": 1,
+          "line": 6,
+          "quote": "函数描述变量之间的对应关系。"
+        }
+      ],
+      "formula_ids": [],
+      "review": "approved"
+    },
+    {
+      "id": "n7",
+      "title": "一次函数示例：$f(x)=2x+1$",
+      "kind": "excerpt",
+      "origin": "textbook",
+      "sources": [
+        {
+          "pdf_page": 1,
+          "line": 7,
+          "quote": "一次函数示例：$f(x)=2x+1$"
+        }
+      ],
+      "formula_ids": [
+        "f2"
+      ],
+      "review": "approved"
+    },
+    {
+      "id": "n8",
+      "title": "第二章 二次函数",
+      "kind": "heading",
+      "origin": "textbook",
+      "sources": [
+        {
+          "pdf_page": 2,
+          "line": 1,
+          "quote": "第二章 二次函数"
+        }
+      ],
+      "formula_ids": [],
+      "review": "approved"
+    },
+    {
+      "id": "n9",
+      "title": "2.1 二次函数的图象",
+      "kind": "heading",
+      "origin": "textbook",
+      "sources": [
+        {
+          "pdf_page": 2,
+          "line": 2,
+          "quote": "2.1 二次函数的图象"
+        }
+      ],
+      "formula_ids": [],
+      "review": "approved"
+    },
+    {
+      "id": "n10",
+      "title": "二次函数示例：$f(x)=x^2$",
+      "kind": "excerpt",
+      "origin": "textbook",
+      "sources": [
+        {
+          "pdf_page": 2,
+          "line": 3,
+          "quote": "二次函数示例：$f(x)=x^2$"
+        }
+      ],
+      "formula_ids": [
+        "f3"
+      ],
+      "review": "approved"
+    },
+    {
+      "id": "n11",
+      "title": "本文件为原创简化测试夹具，不是教材原文。",
+      "kind": "excerpt",
+      "origin": "textbook",
+      "sources": [
+        {
+          "pdf_page": 2,
+          "line": 4,
+          "quote": "本文件为原创简化测试夹具，不是教材原文。"
+        }
+      ],
+      "formula_ids": [],
+      "review": "approved"
+    },
+    {
+      "id": "g1",
+      "title": "集合：语言与运算",
+      "kind": "topic",
+      "origin": "teacher",
+      "sources": [],
+      "formula_ids": [],
+      "review": "approved",
+      "rationale": "原创演示的教师复习分组，不对应教材标题"
+    },
+    {
+      "id": "g2",
+      "title": "函数：对应关系与图象",
+      "kind": "topic",
+      "origin": "teacher",
+      "sources": [],
+      "formula_ids": [],
+      "review": "approved",
+      "rationale": "原创演示的跨章归类，不声称为高考真题规律"
+    }
+  ],
+  "formulas": [
+    {
+      "id": "f1",
+      "raw": "A \\cup B",
+      "latex": "A \\cup B",
+      "source": {
+        "pdf_page": 1,
+        "line": 4,
+        "quote": "集合并集示例：$A \\cup B$"
+      },
+      "review": "approved",
+      "reviewer": "原创夹具编写者",
+      "note": "与生成源核对；语法测试另行执行"
+    },
+    {
+      "id": "f2",
+      "raw": "f(x)=2x+1",
+      "latex": "f(x)=2x+1",
+      "source": {
+        "pdf_page": 1,
+        "line": 7,
+        "quote": "一次函数示例：$f(x)=2x+1$"
+      },
+      "review": "approved",
+      "reviewer": "原创夹具编写者",
+      "note": "与生成源核对；语法测试另行执行"
+    },
+    {
+      "id": "f3",
+      "raw": "f(x)=x^2",
+      "latex": "f(x)=x^2",
+      "source": {
+        "pdf_page": 2,
+        "line": 3,
+        "quote": "二次函数示例：$f(x)=x^2$"
+      },
+      "review": "approved",
+      "reviewer": "原创夹具编写者",
+      "note": "与生成源核对；语法测试另行执行"
+    }
+  ],
+  "textbook": {
+    "node_id": "book",
+    "children": [
+      {
+        "node_id": "n1",
+        "children": [
+          {
+            "node_id": "n2",
+            "children": [
+              {
+                "node_id": "n3",
+                "children": []
+              },
+              {
+                "node_id": "n4",
+                "children": []
+              }
+            ]
+          },
+          {
+            "node_id": "n5",
+            "children": [
+              {
+                "node_id": "n6",
+                "children": []
+              },
+              {
+                "node_id": "n7",
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "node_id": "n8",
+        "children": [
+          {
+            "node_id": "n9",
+            "children": [
+              {
+                "node_id": "n10",
+                "children": []
+              },
+              {
+                "node_id": "n11",
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "exam": {
+    "node_id": "book",
+    "children": [
+      {
+        "node_id": "g1",
+        "children": [
+          {
+            "node_id": "n4",
+            "children": []
+          }
+        ]
+      },
+      {
+        "node_id": "g2",
+        "children": [
+          {
+            "node_id": "n7",
+            "children": []
+          },
+          {
+            "node_id": "n10",
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  "relations": [
+    {
+      "from": "n7",
+      "to": "n10",
+      "type": "contrast",
+      "review": "approved",
+      "rationale": "对照一次与二次函数表达式及图象特征；教师设计的复习连接。"
+    }
+  ],
+  "structure_review": {
+    "textbook": "approved",
+    "exam": "approved",
+    "reviewer": "原创夹具编写者",
+    "note": "原创简化层级已对照生成源；真实教材须重新审核"
+  }
+}
