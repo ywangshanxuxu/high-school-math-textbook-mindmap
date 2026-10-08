@@ -1,0 +1,337 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "book": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "edition": {
+          "type": "string"
+        },
+        "publisher": {
+          "type": "string"
+        },
+        "pdf_name": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "page_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "printed_page_offset": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "title",
+        "edition",
+        "publisher",
+        "pdf_name",
+        "sha256",
+        "page_count",
+        "printed_page_offset"
+      ],
+      "additionalProperties": false
+    },
+    "pages": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/page"
+      }
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/node"
+      }
+    },
+    "formulas": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/formula"
+      }
+    },
+    "textbook": {
+      "$ref": "#/$defs/branch"
+    },
+    "exam": {
+      "$ref": "#/$defs/branch"
+    },
+    "relations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/relation"
+      }
+    },
+    "structure_review": {
+      "type": "object",
+      "properties": {
+        "textbook": {
+          "enum": [
+            "pending",
+            "approved"
+          ]
+        },
+        "exam": {
+          "enum": [
+            "pending",
+            "approved"
+          ]
+        },
+        "reviewer": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "textbook",
+        "exam",
+        "reviewer",
+        "note"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "schema_version",
+    "book",
+    "pages",
+    "nodes",
+    "formulas",
+    "textbook",
+    "exam",
+    "relations",
+    "structure_review"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "source": {
+      "type": "object",
+      "properties": {
+        "pdf_page": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "line": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "quote": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "pdf_page",
+        "line",
+        "quote"
+      ],
+      "additionalProperties": false
+    },
+    "page": {
+      "type": "object",
+      "properties": {
+        "pdf_page": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "printed_page": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "review": {
+          "enum": [
+            "pending",
+            "approved"
+          ]
+        },
+        "reviewer": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        },
+        "extraction": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "pdf_page",
+        "printed_page",
+        "text",
+        "review",
+        "reviewer",
+        "note",
+        "extraction"
+      ],
+      "additionalProperties": false
+    },
+    "node": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "type": "string"
+        },
+        "origin": {
+          "enum": [
+            "textbook",
+            "teacher",
+            "metadata"
+          ]
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          }
+        },
+        "formula_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "review": {
+          "enum": [
+            "pending",
+            "approved"
+          ]
+        },
+        "rationale": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "kind",
+        "origin",
+        "sources",
+        "formula_ids",
+        "review"
+      ],
+      "additionalProperties": false
+    },
+    "formula": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "raw": {
+          "type": "string"
+        },
+        "latex": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source": {
+          "$ref": "#/$defs/source"
+        },
+        "review": {
+          "enum": [
+            "pending",
+            "approved"
+          ]
+        },
+        "reviewer": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "raw",
+        "latex",
+        "source",
+        "review",
+        "reviewer",
+        "note"
+      ],
+      "additionalProperties": false
+    },
+    "branch": {
+      "type": "object",
+      "properties": {
+        "node_id": {
+          "type": "string"
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/branch"
+          }
+        }
+      },
+      "required": [
+        "node_id",
+        "children"
+      ],
+      "additionalProperties": false
+    },
+    "relation": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "prerequisite",
+            "equivalent",
+            "application",
+            "contrast"
+          ]
+        },
+        "rationale": {
+          "type": "string"
+        },
+        "review": {
+          "enum": [
+            "pending",
+            "approved"
+          ]
+        }
+      },
+      "required": [
+        "from",
+        "to",
+        "type",
+        "rationale",
+        "review"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "title": "Textbook Mindmap v1.0",
+  "description": "Shape schema only; semantic and release invariants are checked by mindmap.py."
+}
