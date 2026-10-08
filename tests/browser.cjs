@@ -1,0 +1,48 @@
+// Developer test: NODE_PATH must resolve playwright; no dependency in classroom HTML.
+const {chromium}=require('playwright');
+const {pathToFileURL}=require('url');
+const path=require('path');
+const assert=require('assert');
+(async()=>{
+  const browser=await chromium.launch({headless:true,...(process.env.MINDMAP_BROWSER?{executablePath:process.env.MINDMAP_BROWSER}:{})});
+  const context=await browser.newContext({viewport:{width:1440,height:960},offline:true});
+  const page=await context.newPage(),errors=[],requests=[],fileRequests=[];
+  page.on('pageerror',e=>errors.push(e.message));
+  page.on('request',r=>{if(/^https?:/.test(r.url()))requests.push(r.url());if(/^file:/.test(r.url()))fileRequests.push(r.url());});
+  await context.route('**/*',route=>/^https?:/.test(route.request().url())?route.abort():route.continue());
+  await page.goto(pathToFileURL(path.resolve(process.argv[2])).href);
+  await page.waitForSelector('.node-label');
+  await page.evaluate(()=>document.fonts.ready);
+  assert(await page.locator('.katex').count()>=3,'KaTeX missing');
+  assert(await page.evaluate(()=>Array.from(document.fonts).some(f=>f.family.includes('KaTeX')&&f.status==='loaded')),'embedded fonts not loaded');
+  const initial=await page.locator('.node-label').count();
+  await page.click('#collapse');await page.waitForTimeout(250);
+  assert(await page.locator('.node-label').count()<initial,'collapse failed');
+  await page.click('#expand');await page.waitForTimeout(250);
+  assert.equal(await page.locator('.node-label').count(),initial,'expand failed');
+  // Circle interaction independently of toolbar.
+  await page.locator('g.markmap-node circle').first().click();await page.waitForTimeout(250);
+  assert(await page.locator('.node-label').count()<initial,'circle collapse failed');
+  await page.click('#expand');await page.waitForTimeout(250);
+  const transform=()=>page.locator('#map > g').first().getAttribute('transform');
+  const before=await transform();await page.click('#plus');await page.waitForTimeout(250);
+  assert.notEqual(await transform(),before,'zoom button failed');
+  const zoomed=await transform();await page.mouse.move(450,600);await page.mouse.wheel(0,-160);await page.waitForTimeout(250);
+  assert.notEqual(await transform(),zoomed,'wheel zoom failed');
+  const panBefore=await transform();await page.mouse.move(600,700);await page.mouse.down();await page.mouse.move(700,740,{steps:5});await page.mouse.up();
+  assert.notEqual(await transform(),panBefore,'drag failed');
+  await page.click('#fit');await page.waitForTimeout(250);
+  await page.fill('#search','一次函数');await page.waitForTimeout(450);
+  assert(await page.locator('#results button').count()===1,'search failed');
+  await page.locator('#results button').first().click();
+  assert((await page.locator('#detail').textContent()).includes('PDF 第 1 页'),'source missing');
+  await page.click('#clear');await page.selectOption('#mode','exam');await page.waitForTimeout(300);
+  assert((await page.locator('#map').textContent()).includes('函数：对应关系与图象'),'mode failed');
+  await page.locator('[data-node]').filter({hasText:'一次函数示例'}).click();
+  assert((await page.locator('#detail').textContent()).includes('辨析'),'relation missing');
+  assert.equal(await page.locator('#error').textContent(),'');
+  assert.deepEqual(errors,[]);assert.deepEqual(requests,[]);assert.equal(fileRequests.length,1,'HTML loaded an adjacent file');
+  if(process.env.MINDMAP_SCREENSHOT)await page.screenshot({path:process.env.MINDMAP_SCREENSHOT,fullPage:true});
+  console.log(JSON.stringify({ok:true,offline:true,httpRequests:requests.length,fileRequests:fileRequests.length,pageErrors:errors,checks:['KaTeX/fonts','collapse/expand','circle','zoom button/wheel','drag','fit','search','mode','source','relations'],browser:browser.version()},null,2));
+  await browser.close();
+})().catch(e=>{console.error(e);process.exit(1)});

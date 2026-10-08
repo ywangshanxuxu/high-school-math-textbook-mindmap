@@ -1,0 +1,20 @@
+{
+  "ok": true,
+  "offline": true,
+  "httpRequests": 0,
+  "fileRequests": 1,
+  "pageErrors": [],
+  "checks": [
+    "KaTeX/fonts",
+    "collapse/expand",
+    "circle",
+    "zoom button/wheel",
+    "drag",
+    "fit",
+    "search",
+    "mode",
+    "source",
+    "relations"
+  ],
+  "browser": "153.0.8010.12"
+}

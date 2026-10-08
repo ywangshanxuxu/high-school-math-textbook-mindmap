@@ -1,0 +1,22 @@
+{
+  "ok": true,
+  "errors": [],
+  "math": [
+    {
+      "id": "f1",
+      "valid": true,
+      "semantic_verified": false
+    },
+    {
+      "id": "f2",
+      "valid": true,
+      "semantic_verified": false
+    },
+    {
+      "id": "f3",
+      "valid": true,
+      "semantic_verified": false
+    }
+  ],
+  "pdf_identity_checked": true
+}
