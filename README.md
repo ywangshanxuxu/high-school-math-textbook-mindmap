@@ -1,31 +1,57 @@
-# high-school-math-textbook-mindmap
+# 高中数学教材双模式思维导图 · high-school-math-textbook-mindmap
 
-为 Windows Codex 高中数学教师准备的可运行 Skill 项目。面向人教A版的工作方式；未使用或验证真实人教A版 PDF。样例是原创两页简化材料，不是教材完整知识导图。
+![preview](examples/sample.preview.png)
 
-## 立即使用
+把高中数学教材 PDF 变成**可溯源、可人工复核**的思维导图：一份忠于教材目录的「教材模式」，一份按高考复习组织的「复习模式」，最后导出一个**完全离线、双击即开**的单文件 HTML（内嵌 Markmap、D3、KaTeX 及全部字体）。
 
-直接双击 `examples/sample.offline.html`（Edge/Chrome）。此单文件已嵌入 D3、Markmap、KaTeX 和全部 KaTeX 字体，不依赖同目录文件或网络。选择双模式，点击节点文字查看出处；圆点折叠/展开，滚轮缩放，拖动空白区域移动。工具栏可全部展开、折叠、适应窗口、搜索；搜索当前模式并展开匹配内容，右侧可选结果。跨章连接在右侧列为关系，不绘制图边。
+面向人教A版高中数学教师的备课与复习场景，可作为 Codex / Claude 等智能体的 Skill 使用，也可以直接用命令行运行。
 
-## 安装到 Codex
+> English: A runnable agent skill that turns a high-school math textbook PDF into a traceable, teacher-reviewed dual-mode mind map (strict textbook structure + exam-review network) and exports a fully offline single-file HTML with Markmap, KaTeX and embedded fonts.
 
-解压后，将完整 `high-school-math-textbook-mindmap` 文件夹复制到 `$env:USERPROFILE\.codex\skills\`。已有同名目录先备份，不要覆盖个人修改。重启/重新加载 Codex 后通过 `$high-school-math-textbook-mindmap` 调用。也可先直接让 Codex 读取本文件夹 SKILL.md。本交付未修改你的全局 Skill 目录。
+## ✨ 特点
 
-## Windows 命令
+- **双模式导图**：教材模式保留原文标题、顺序与页码；复习模式允许教师补充分组、先修与易混辨析，并标注来源。
+- **每个节点可溯源**：点击节点即可看到 PDF 页、印刷页码、提取行和原文。
+- **公式人工把关**：公式候选需手工转录 LaTeX 并签署，KaTeX 语法检查保证可渲染。
+- **发布门禁**：未复核的页、节点、公式会以草稿标记显示，`--release` 会拒绝未审核数据。
+- **完全离线**：单个 HTML 不依赖网络和同目录文件，设置 `connect-src 'none'`，适合教室电脑。
+- **交互完善**：折叠/展开、滚轮缩放、拖拽、全部展开、适应窗口、搜索（右侧列出结果）、跨章关系列表。
 
-在本项目目录打开 PowerShell。Python 3.10+、Node 18+；包内 vendor 已备齐，正常构建无需 npm install。
+## 🚀 快速体验
+
+下载仓库后直接用 Edge / Chrome 打开 `examples/sample.offline.html`。
+
+> 样例是原创的两页简化材料，用于验证软件，**不是**人教A版教材原文。
+
+## 📦 作为 Skill 安装
+
+将整个 `high-school-math-textbook-mindmap` 文件夹复制到智能体的 skills 目录，例如 Codex：
+
+```powershell
+git clone https://github.com/ywangshanxuxu/-high-school-math-textbook-mindmap.git high-school-math-textbook-mindmap
+Copy-Item -Recurse high-school-math-textbook-mindmap "$env:USERPROFILE\.codex\skills\"
+```
+
+重启后用 `$high-school-math-textbook-mindmap` 调用，或让智能体先读取 `SKILL.md`。已有同名目录请先备份。
+
+## 🛠️ 命令行用法
+
+环境：Python 3.10+、Node 18+。前端依赖已随包提供，无需 `npm install`。
 
 ```powershell
 python -m venv .venv
 $py = '.\.venv\Scripts\python.exe'
 & $py -m pip install -r requirements.txt
+
+# 1. 提取草稿（先改 examples/config.json 里的书名、版次、出版社和页码偏移）
 & $py scripts/mindmap.py extract 'D:\教材\数学选章.pdf' --config examples/config.json --out work/book.draft.json
+# 2. 校验
 & $py scripts/mindmap.py validate work/book.draft.json --pdf 'D:\教材\数学选章.pdf'
+# 3. 生成草稿 HTML
 & $py scripts/mindmap.py build work/book.draft.json --out work/book.draft.html
 ```
 
-先修改 config 的 title、edition、publisher 和书页偏移。安装 Python 包需要网络；若要离线首次安装，在另一台同平台同 Python 版本电脑准备 wheelhouse，然后 `pip install --no-index --find-links wheelhouse -r requirements.txt`。此包未携带 Python/Node 运行时或 wheels；生成的 HTML 本身无需这些运行时。
-
-按 references/review.md 在 JSON 中逐条核对并签署。示例的 approved 仅适用原创夹具，不得复制到真实教材。
+按 `references/review.md` 逐条核对并签署后，正式发布：
 
 ```powershell
 & $py scripts/mindmap.py validate work/book.reviewed.json --release --pdf 'D:\教材\数学选章.pdf' > work/validation.json
@@ -33,22 +59,46 @@ if ($LASTEXITCODE -ne 0) { throw '校验未通过，保留草稿' }
 & $py scripts/mindmap.py build work/book.reviewed.json --release --out work/book.offline.html
 ```
 
-如果 Node 不在 PATH，追加 `--node 'C:\完整路径\node.exe'`。Codex 可通过 load_workspace_dependencies 获取其捆绑运行时，不要在脚本中固定某台电脑路径。pypdf、reportlab 版本固定在 requirements.txt；后者仅再生 PDF 夹具时需要。
+Node 不在 PATH 时追加 `--node 'C:\完整路径\node.exe'`。macOS / Linux 把 `.\.venv\Scripts\python.exe` 换成 `.venv/bin/python` 即可。
 
-## 测试和再生样例
+## 🔄 工作流程
+
+```
+文本层 PDF → 启发式提取草稿 → 人工复核结构与公式 → KaTeX 语法检查 → 离线导出
+```
+
+## 📁 目录结构
+
+| 路径 | 说明 |
+| --- | --- |
+| `SKILL.md` | Skill 入口与工作流程 |
+| `scripts/mindmap.py` | 提取 / 校验 / 构建命令行 |
+| `scripts/check_math.cjs` | KaTeX 公式语法检查 |
+| `scripts/vendor.py` | 联网更新前端依赖（日常无需运行） |
+| `references/` | 数据模型、复核规范、JSON Schema |
+| `assets/` | HTML 模板与离线依赖（D3、Markmap、KaTeX） |
+| `examples/` | 原创样例 PDF、草稿/复核 JSON、离线 HTML、调用提示 |
+| `tests/` | 单元测试、浏览器测试与测试报告 |
+
+## 🧪 测试
 
 ```powershell
 & $py scripts/make_sample.py
 & $py -m unittest discover -s tests -v
-& $py scripts/mindmap.py build examples/sample.reviewed.json --release --out examples/sample.offline.html
+node tests/browser.cjs examples/sample.offline.html   # 需 playwright + Chromium
 ```
 
-测试覆盖提取、页码/指纹、待复核门禁、损坏来源、树循环/順序、坏公式、恶意标签转义和字体嵌入。浏览器测试另需 Node 的 playwright 包和 Chromium（开发依赖，不用于课堂）。若已安装，可执行 `node tests/browser.cjs examples/sample.offline.html`；测试报告说明哪些环境实测。
+覆盖提取、页码/指纹、待复核门禁、损坏来源、树循环与顺序、坏公式、恶意标签转义和字体嵌入。
 
-`scripts/vendor.py` 是显式联网维护脚本，下载固定版本及许可证、所有字体并写 SHA256 manifest；不要在正常生成流程执行它。更新依赖后重新测试和审查许可证。离线 build 验证 vendor 指纹，HTML 还设置 connect-src 'none'。不包含统计、CDN 回退或外部 PDF 链接。
+## ⚠️ 边界
 
-## 边界
+- 只处理带文本层的 PDF，**不做 OCR**，不识别图形；扫描件需先由外部 OCR 转录。
+- 公式漏检、标题分级、阅读顺序和数学语义都需要人工审核；门禁只检查审核声明，无法证明声明真实。
+- 大教材建议按章节拆分后处理，以免 HTML 过大。
+- 未使用或验证真实人教A版 PDF。
 
-这是一条“文本层 PDF → 启发式草稿 → 人工结构/公式复核 → KaTeX 语法检查 → 离线导出”流水线。不是 OCR/复杂公式识别引擎。公式漏检、标题误分级、阅读顺序、图表及数学语义需人工审核。正式门禁检查审核声明，无法证明声明真实。大教材将包含全文且 HTML 较大，建议先选章。页码溯源显示 PDF 页、书页、提取行和原文，不嵌入 PDF 图像，也不自动打开原文件。
+## 📄 许可证
 
-实现参考：[Markmap API](https://markmap.js.org/api/classes/markmap-view.Markmap.html)、[KaTeX 选项](https://katex.org/docs/options.html)、[pypdf 提取限制](https://pypdf.readthedocs.io/en/stable/user/extract-text.html)。项目代码采用 MIT，第三方许可证保留于 assets/vendor。
+项目代码采用 [MIT](LICENSE)。第三方库（D3、Markmap、KaTeX）许可证保留在 `assets/vendor/`。
+
+参考：[Markmap API](https://markmap.js.org/api/classes/markmap-view.Markmap.html) · [KaTeX 选项](https://katex.org/docs/options.html) · [pypdf 提取限制](https://pypdf.readthedocs.io/en/stable/user/extract-text.html)
