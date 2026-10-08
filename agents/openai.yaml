@@ -1,0 +1,6 @@
+interface:
+  display_name: "高中数学教材双模式导图"
+  short_description: "从教材 PDF 生成带页码溯源、公式复核和双模式的离线课堂知识导图"
+  default_prompt: "使用 $high-school-math-textbook-mindmap 将我的人教A版数学教材 PDF 转为双模式离线导图，先生成待复核草稿。"
+policy:
+  allow_implicit_invocation: true
